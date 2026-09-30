@@ -2,8 +2,10 @@ function Header() {
 
   return (
     <>
-      <h1>Hallo header</h1>
+      <h1>Pokemon</h1>
+      <h3>Een leuk website voor pokemons</h3>
     </>
+    
   )
 }
 
