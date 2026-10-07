@@ -1,0 +1,74 @@
+/* Algemene stijl */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Navigatie */
+nav {
+    background-color: #FF0000 ;
+    padding: 15px;
+    display: flex;
+    gap: 20px;
+}
+
+/* Links in navigatie */
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Link hover */
+nav a:hover {
+    color: #ccc;
+}
+
+/* Pagina inhoud */
+main {
+    padding: 30px;
+}
+
+/* Algemene container */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Knoppen */
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ccc;
+}

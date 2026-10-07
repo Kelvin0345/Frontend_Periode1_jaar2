@@ -29,9 +29,7 @@ function Pokemon(props) {
                     <h2>{pokemon.name}</h2>
                     <DetailButton/>
                     <p>Hoogte: {pokemon.height}</p>
-                    <p>Gewicht: {pokemon.weight}</p>
-                    <p>Ervaringspunten: {pokemon.base_experience}</p>
-                    <p>Gewicht: {pokemon.weight}</p>
+                    <img src="" alt="" />
 
                 </div>
             )}
