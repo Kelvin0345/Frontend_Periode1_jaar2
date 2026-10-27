@@ -8,7 +8,6 @@ function Home() {
     <>
       <Navigation/>
       <Header/>
-      <Footer/>
     </>
   )
 }

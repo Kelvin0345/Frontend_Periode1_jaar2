@@ -13,7 +13,7 @@ function App() {
         {/* Navigation */}
         <nav>
           <Link to="/">Home</Link>
-          <Link to="/list">List</Link>
+          <Link to="/list">Teamlijsten</Link>
           
         </nav>
         {/* Routes */}
@@ -24,8 +24,12 @@ function App() {
           <Route path="/detail/:id" element={<Detail />} />
         </Routes>
 
-        <footer></footer>
-         
+        <footer>
+          Pokemon
+        </footer>
+
+
+
       </BrowserRouter>
     </>
   )

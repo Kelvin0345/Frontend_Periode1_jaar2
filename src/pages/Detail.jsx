@@ -1,5 +1,6 @@
 import Header from '../components/Header'
 import Navigation from '../components/Navigation'
+import PokemonDetail from '../components/PokemonDetail'
 import Footer from '../components/footer'
 
 function Detail() {
@@ -8,13 +9,12 @@ function Detail() {
     <>
       <Navigation/>
       <Header/>
-      
+      <PokemonDetail/>
       <div className="container">
         
       </div>
 
 
-      <Footer/>
     </>
   )
 }

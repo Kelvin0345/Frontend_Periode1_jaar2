@@ -52,8 +52,8 @@ button:hover {
 
 /* Footer */
 footer {
-    background-color: #222;
-    color: white;
+    background-color: #FFFF00;
+    color: black;
     text-align: center;
     padding: 20px;
     margin-top: 40px;
@@ -72,3 +72,4 @@ footer a {
 footer a:hover {
     color: #ccc;
 }
+

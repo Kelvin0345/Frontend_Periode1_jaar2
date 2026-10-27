@@ -5,12 +5,14 @@ function Pokemon(props) {
     const [pokemon, setPokemon] = useState(null);
 
     useEffect(() => {
-        console.log(props.url)
+        console.log(props.url);
+
         fetch(props.url)
             .then(res => {
                 if (!res.ok) {
                     throw new Error("Fout bij ophalen Pokémon");
                 }
+
                 return res.json();
             })
             .then(data => {
@@ -21,21 +23,27 @@ function Pokemon(props) {
                 console.error("Er is iets misgegaan:", error);
             });
     }, [props.url]);
+
     return (
         <>
             <p>{props.url}</p>
+
             {pokemon && (
                 <div>
                     <h2>{pokemon.name}</h2>
-                    <DetailButton/>
-                    <p>Hoogte: {pokemon.height}</p>
-                    <img src="" alt="" />
 
+                    <p>Gewicht: {pokemon.weight}</p>
+
+                    <img
+                        src={pokemon.sprites.front_default}
+                        alt={pokemon.name}
+                    />
+
+                    <DetailButton id={pokemon.id} />
                 </div>
             )}
         </>
-    )
-
+    );
 }
 
-export default Pokemon
+export default Pokemon;
