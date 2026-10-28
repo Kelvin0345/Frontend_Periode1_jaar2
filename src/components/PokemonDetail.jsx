@@ -1,46 +1,60 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 function PokemonDetail() {
-  const { id } = useParams();
-
-  const [pokemon, setPokemon] = useState(null);
+  const { id } = useParams()
+  const [pokemon, setPokemon] = useState(null)
+  const [loadError, setLoadError] = useState('')
 
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        setPokemon(data);
-      });
-  }, [id]);
+    const controller = new AbortController()
+    setPokemon(null)
+    setLoadError('')
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Pokémongegevens konden niet worden opgehaald (${response.status}).`)
+        }
+        return response.json()
+      })
+      .then((data) => setPokemon(data))
+      .catch((error) => {
+        if (error.name !== 'AbortError') setLoadError(error.message)
+      })
 
+    return () => controller.abort()
+  }, [id])
+
+  if (loadError) {
+    return <p className="status-message status-error" role="alert">{loadError}</p>
+  }
   if (!pokemon) {
-    return <p>Pokémon laden...</p>;
+    return <p className="status-message" role="status">Pokémon laden...</p>
   }
 
+  const artwork = pokemon.sprites.other['official-artwork'].front_default
+    || pokemon.sprites.front_default
+
   return (
-    <div>
-      <h1>{pokemon.name}</h1>
-
-      <img
-        src={pokemon.sprites.front_default}
-        alt={pokemon.name}
-      />
-
-      <p>Height: {pokemon.height}</p>
-      <p>Weight: {pokemon.weight}</p>
-
-      <h2>Types</h2>
-
-      <ul>
-        {pokemon.types.map(type => (
-          <li key={type.type.name}>
-            {type.type.name}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    <section>
+      <h1 className="page-heading detail-title">Pokémon Detail</h1>
+      <div className="detail-layout">
+        <section className="detail-panel">
+          <h2>Pokémongegevens</h2>
+          <p className="detail-pokemon-name">{pokemon.name}</p>
+          <dl className="detail-stats">
+            <div><dt>Hoogte</dt><dd>{pokemon.height / 10} m</dd></div>
+            <div><dt>Gewicht</dt><dd>{pokemon.weight / 10} kg</dd></div>
+            <div><dt>Type</dt><dd>{pokemon.types.map(({ type }) => type.name).join(', ')}</dd></div>
+            <div><dt>Ervaring</dt><dd>{pokemon.base_experience ?? 'Onbekend'}</dd></div>
+          </dl>
+        </section>
+        <div className="detail-image">
+          <img src={artwork} alt={pokemon.name} />
+        </div>
+      </div>
+    </section>
+  )
 }
 
-export default PokemonDetail;
+export default PokemonDetail

@@ -1,9 +1,6 @@
 function Footer() {
-
   return (
-    <>
-      Pokemon
-    </>
+    <footer className="site-footer" aria-label="Einde van de pagina" />
   )
 }
 
